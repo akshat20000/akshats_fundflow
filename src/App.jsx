@@ -1,0 +1,61 @@
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { supabase } from '@/lib/supabase';
+import useAuthStore from '@/store/useAuthStore';
+import useWalletStore from '@/store/useWalletStore';
+import ProtectedRoute from '@/components/layout/ProtectedRoute';
+
+// Pages (lazy-ish — just imported directly for now)
+import Landing  from '@/pages/Landing';
+import SignIn   from '@/pages/SignIn';
+import SignUp   from '@/pages/SignUp';
+import Dashboard from '@/pages/Dashboard';
+
+export default function App() {
+  const { initialize, setUser, fetchProfile } = useAuthStore();
+  const { loadAll, reset } = useWalletStore();
+
+  // ── Bootstrap: check session on first load ──
+  useEffect(() => {
+    initialize();
+  }, [initialize]);
+
+  // ── Listen for auth state changes (across tabs, token refresh, etc.) ──
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        const user = session?.user ?? null;
+        setUser(user);
+
+        if (event === 'SIGNED_IN' && user) {
+          await fetchProfile();
+          await loadAll(user.id);
+        }
+
+        if (event === 'SIGNED_OUT') {
+          reset();
+        }
+      }
+    );
+    return () => subscription.unsubscribe();
+  }, [setUser, fetchProfile, loadAll, reset]);
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Public routes */}
+        <Route path="/"        element={<Landing />} />
+        <Route path="/signin"  element={<SignIn />} />
+        <Route path="/signup"  element={<SignUp />} />
+
+        {/* Protected routes */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
