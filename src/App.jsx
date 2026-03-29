@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { supabase } from '@/lib/supabase';
 import useAuthStore from '@/store/useAuthStore';
 import useWalletStore from '@/store/useWalletStore';
-import ProtectedRoute from '@/components/layout/ProtectedRoute';
+import ProtectedRoute from '@/components/Layout/ProtectedRoute';
 
 // Pages (lazy-ish — just imported directly for now)
 import Landing  from '@/pages/Landing';
