@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '@/store/useAuthStore';
 import useWalletStore from '@/store/useWalletStore';
-import DashboardLayout from '@/components/layout/DashboardLayout';
+import DashboardLayout from '@/components/Layout/DashboardLayout';
 import { Spinner } from '@/components/ui';
 
 // Section components (stubs for now, replaced in Section 5)

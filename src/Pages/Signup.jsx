@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuthStore from '@/store/useAuthStore';
-import AuthLayout from '@/components/layout/AuthLayout';
+import AuthLayout from '@/components/Layout/AuthLayout';
 import { Spinner } from '@/components/ui';
 
 // Password strength helper
