@@ -8,7 +8,7 @@ import ProtectedRoute from '@/components/Layout/ProtectedRoute';
 // Pages (lazy-ish — just imported directly for now)
 import Landing  from '@/Pages/Landing';
 import SignIn   from '@/Pages/Signin';
-import SignUp   from '@/Pages/SignUp';
+import SignUp   from '@/Pages/Signup';
 import Dashboard from '@/Pages/Dashboard';
 
 export default function App() {
