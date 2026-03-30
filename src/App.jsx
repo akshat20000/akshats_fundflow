@@ -6,10 +6,10 @@ import useWalletStore from '@/store/useWalletStore';
 import ProtectedRoute from '@/components/Layout/ProtectedRoute';
 
 // Pages (lazy-ish — just imported directly for now)
-import Landing  from '@/pages/Landing';
-import SignIn   from '@/pages/SignIn';
-import SignUp   from '@/pages/SignUp';
-import Dashboard from '@/pages/Dashboard';
+import Landing  from '@/Pages/Landing';
+import SignIn   from '@/Pages/SignIn';
+import SignUp   from '@/Pages/SignUp';
+import Dashboard from '@/Pages/Dashboard';
 
 export default function App() {
   const { initialize, setUser, fetchProfile } = useAuthStore();
