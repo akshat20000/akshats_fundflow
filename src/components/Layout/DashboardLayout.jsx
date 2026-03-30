@@ -3,9 +3,11 @@ import Sidebar from './Sidebar';
 import { formatUSD } from '@/utils/format';
 import useWalletStore from '@/store/useWalletStore';
 import useAuthStore from '@/store/useAuthStore';
+import AddMoneyModal from '@/components/modals/AddMoneyModal';
 
 export default function DashboardLayout({ activeSection, onNavigate, children }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen,  setSidebarOpen]  = useState(false);
+  const [addMoneyOpen, setAddMoneyOpen] = useState(false);
   const { balance } = useWalletStore();
   const { profile } = useAuthStore();
 
@@ -63,6 +65,17 @@ export default function DashboardLayout({ activeSection, onNavigate, children })
 
           {/* Right side actions */}
           <div className="flex items-center gap-3">
+            {/* Add money shortcut */}
+            <button
+              onClick={() => setAddMoneyOpen(true)}
+              className="hidden sm:flex items-center gap-1.5 bg-cyan text-void font-bold text-xs
+                px-3.5 py-2 rounded-lg border-none cursor-pointer transition-all duration-150
+                hover:bg-[#1adbff]"
+              style={{ boxShadow: '0 2px 12px rgba(0,212,255,0.25)' }}
+            >
+              <i className="fas fa-plus text-[0.75rem]" />
+              Add Money
+            </button>
             {/* Balance chip — hidden on small screens */}
             <div className="hidden md:flex items-center gap-2 bg-surface border border-white/[0.07]
               rounded-full px-4 py-1.5">
@@ -105,6 +118,8 @@ export default function DashboardLayout({ activeSection, onNavigate, children })
           </div>
         </main>
       </div>
+
+      <AddMoneyModal isOpen={addMoneyOpen} onClose={() => setAddMoneyOpen(false)} />
     </div>
   );
 }

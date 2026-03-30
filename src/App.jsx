@@ -16,29 +16,53 @@ export default function App() {
   const { loadAll, reset } = useWalletStore();
 
   // ── Bootstrap: check session on first load ──
-  useEffect(() => {
-    initialize();
-  }, [initialize]);
+  // useEffect(() => {
+  //   initialize();
+  // }, [initialize]);
 
   // ── Listen for auth state changes (across tabs, token refresh, etc.) ──
-  useEffect(() => {
+  // useEffect(() => {
+  //   const { data: { subscription } } = supabase.auth.onAuthStateChange(
+  //     async (event, session) => {
+  //       const user = session?.user ?? null;
+  //       setUser(user);
+
+  //       if (event === 'SIGNED_IN' && user) {
+  //         await fetchProfile();
+  //         await loadAll(user.id);
+  //       }
+
+  //       if (event === 'SIGNED_OUT') {
+  //         reset();
+  //       }
+  //     }
+  //   );
+  //   return () => subscription.unsubscribe();
+  // }, [setUser, fetchProfile, loadAll, reset]);
+
+  // Inside App.jsx
+useEffect(() => {
+  const setupAuth = async () => {
+    // 1. Run the initial check
+    await initialize(); 
+
+    // 2. Then start listening for changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         const user = session?.user ?? null;
         setUser(user);
-
-        if (event === 'SIGNED_IN' && user) {
+        if (user) {
           await fetchProfile();
           await loadAll(user.id);
         }
-
-        if (event === 'SIGNED_OUT') {
-          reset();
-        }
       }
     );
+
     return () => subscription.unsubscribe();
-  }, [setUser, fetchProfile, loadAll, reset]);
+  };
+
+  setupAuth();
+}, [initialize, setUser, fetchProfile, loadAll]);
 
   return (
     <BrowserRouter>

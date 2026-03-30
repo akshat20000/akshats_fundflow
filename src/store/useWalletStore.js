@@ -89,8 +89,12 @@ const useWalletStore = create((set, get) => ({
   },
 
   // ── Fetch Groups ──
-  fetchGroups: async () => {
+  // ── Fetch Groups ──
+  fetchGroups: async (userId) => {
+    if (!userId) return; // Ensure we have a user
     set({ loadingGroups: true });
+    
+    // We fetch groups where the user is present in the members list
     const { data, error } = await supabase
       .from('groups')
       .select(`
@@ -100,11 +104,15 @@ const useWalletStore = create((set, get) => ({
           profiles ( id, username, email )
         )
       `)
+      .eq('group_members.user_id', userId) // Filter for groups the user is in
       .order('created_at', { ascending: false });
 
-    if (!error) set({ groups: data || [] });
+    if (!error) {
+        set({ groups: data || [] });
+    } else {
+        console.error("Groups Fetch Error:", error);
+    }
     set({ loadingGroups: false });
-    return { error };
   },
 
   // ── RPC: Add funds ──
@@ -204,7 +212,7 @@ const useWalletStore = create((set, get) => ({
       get().fetchBalance(userId),
       get().fetchTransactions(userId),
       get().fetchContacts(userId),
-      get().fetchGroups(),
+      get().fetchGroups(userId),
     ]);
   },
 

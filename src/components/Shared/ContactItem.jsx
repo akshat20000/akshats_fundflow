@@ -1,4 +1,5 @@
 export default function ContactItem({ contact, onSend, compact = false }) {
+    if (!contact || !contact.name) return null;
   const initials = contact.name
     .split(' ')
     .map(w => w[0])
