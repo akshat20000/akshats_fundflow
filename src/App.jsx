@@ -7,7 +7,7 @@ import ProtectedRoute from '@/components/Layout/ProtectedRoute';
 
 // Pages (lazy-ish — just imported directly for now)
 import Landing  from '@/Pages/Landing';
-import SignIn   from '@/Pages/SignIn';
+import SignIn   from '@/Pages/Signin';
 import SignUp   from '@/Pages/SignUp';
 import Dashboard from '@/Pages/Dashboard';
 
