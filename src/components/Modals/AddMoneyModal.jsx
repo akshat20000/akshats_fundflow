@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import useWalletStore from '@/store/useWalletStore';
 import useAuthStore from '@/store/useAuthStore';
-import useMetaMask, { MM_STATUS } from '@/hooks/useMetaMask';
+import useMetaMask, { MM_STATUS } from '@/hooks/useMetamask';
 import { ETH_TO_USD_RATE } from '@/utils/constants';
 import { formatUSD } from '@/utils/format';
 

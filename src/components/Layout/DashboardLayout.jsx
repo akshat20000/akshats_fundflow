@@ -3,7 +3,7 @@ import Sidebar from './Sidebar';
 import { formatUSD } from '@/utils/format';
 import useWalletStore from '@/store/useWalletStore';
 import useAuthStore from '@/store/useAuthStore';
-import AddMoneyModal from '@/components/modals/AddMoneyModal';
+import AddMoneyModal from '@/components/Modals/AddMoneyModal';
 
 export default function DashboardLayout({ activeSection, onNavigate, children }) {
   const [sidebarOpen,  setSidebarOpen]  = useState(false);

@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import useWalletStore from '@/store/useWalletStore';
 import useAuthStore from '@/store/useAuthStore';
-import { TransactionList, SectionHeader, SearchInput, StatCard } from '@/components/shared';
+import { TransactionList, SectionHeader, SearchInput, StatCard } from '@/components/Shared';
 import { Card, CardHeader, Modal, Alert } from '@/components/ui';
 import { formatUSD } from '@/utils/format';
 

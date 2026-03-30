@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import useAuthStore from '@/store/useAuthStore';
-import { SectionHeader } from '@/components/shared';
+import { SectionHeader } from '@/components/Shared';
 import { Card, CardHeader, Alert } from '@/components/ui';
 
 export default function SettingsSection() {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import useWalletStore from '@/store/useWalletStore';
 import useAuthStore from '@/store/useAuthStore';
-import { GroupItem, SectionHeader } from '@/components/shared';
+import { GroupItem, SectionHeader } from '@/components/Shared';
 import { Card, CardHeader, Modal, Alert, EmptyState, Spinner } from '@/components/ui';
 import { formatUSD } from '@/utils/format';
 

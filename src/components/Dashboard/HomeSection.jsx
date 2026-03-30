@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import useWalletStore from '@/store/useWalletStore';
 import useAuthStore from '@/store/useAuthStore';
-import { BalanceCard, TransactionList, ContactItem, StatCard, SectionHeader } from '@/components/shared';
+import { BalanceCard, TransactionList, ContactItem, StatCard, SectionHeader } from '@/components/Shared';
 import { Card, CardHeader, EmptyState } from '@/components/ui';
-import AddMoneyModal from '@/components/modals/AddMoneyModal';
+import AddMoneyModal from '@/components/Modals/AddMoneyModal';
 
 export default function HomeSection({ onNavigate }) {
   const { transactions, contacts, loadingTransactions, loadingContacts } = useWalletStore();

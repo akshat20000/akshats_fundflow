@@ -1,4 +1,4 @@
-import { SectionHeader } from '@/components/shared';
+import { SectionHeader } from '@/components/Shared';
 import { Card, CardHeader } from '@/components/ui';
 
 const BILL_CATEGORIES = [

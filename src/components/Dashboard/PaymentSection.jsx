@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import useWalletStore from '@/store/useWalletStore';
 import useAuthStore from '@/store/useAuthStore';
-import { TransactionList, SectionHeader } from '@/components/shared';
+import { TransactionList, SectionHeader } from '@/components/Shared';
 import { Card, CardHeader, Alert } from '@/components/ui';
 import { formatUSD } from '@/utils/format';
 

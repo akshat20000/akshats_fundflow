@@ -14,7 +14,7 @@ import {
   BillsSection,
   ActivitySection,
   SettingsSection,
-} from '@/components/dashboard/SectionStubs';
+} from '@/components/Dashboard/SectionStubs';
 
 const SECTIONS = {
   home:     HomeSection,

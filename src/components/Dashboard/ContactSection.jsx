@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import useWalletStore from '@/store/useWalletStore';
 import useAuthStore from '@/store/useAuthStore';
-import { ContactItem, SectionHeader, SearchInput } from '@/components/shared';
+import { ContactItem, SectionHeader, SearchInput } from '@/components/Shared';
 import { Card, CardHeader, Modal, Alert, EmptyState, Spinner } from '@/components/ui';
 
 export default function ContactsSection({ onNavigate }) {
