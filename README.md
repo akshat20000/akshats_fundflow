@@ -944,7 +944,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## Authors
 
 - **Akshat Prashar** — [@akshat20000](https://github.com/akshat20000)
-- **Aaryan**
 
 ---
 
