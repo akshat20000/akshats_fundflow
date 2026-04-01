@@ -37,14 +37,14 @@ export default function Dashboard() {
   }
 
   const [activeSection, setActiveSection] = useState(getSectionFromHash);
-  const [dataLoading, setDataLoading]     = useState(true);
+  const [dataLoading, setDataLoading]     = useState(false);
 
   useEffect(() => {
     if (!user) { navigate('/signin', { replace: true }); return; }
     async function bootstrap() {
-      setDataLoading(true);
+     // setDataLoading(true);
       await loadAll(user.id);
-      setDataLoading(false);
+     // setDataLoading(false);
     }
     bootstrap();
   }, [user, navigate, loadAll]);
