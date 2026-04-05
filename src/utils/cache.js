@@ -1,18 +1,18 @@
-import {redis} from '@/lib/Redis'
+import { redis } from '@/lib/Redis';
 
-export const TTL={
-    PROFILE: 60,
-    TRANSACTION:30,
-    CONTACTS:300,
-    GROUPS:60
+export const TTL = {
+  PROFILE: 60,
+  TRANSACTIONS: 30,
+  CONTACTS: 300,
+  GROUPS: 60
 };
 
-export const Keys={
-    profile: (userId)=>'ff:profile:${userId}',
-    transactions: (userId) => `ff:transactions:${userId}`,
-  contacts:(userId) => `ff:contacts:${userId}`,
-  groups:(userId) => `ff:groups:${userId}`,
-}
+export const Keys = {
+  profile: (userId) => `ff:profile:${userId}`,
+  transactions: (userId) => `ff:transactions:${userId}`,
+  contacts: (userId) => `ff:contacts:${userId}`,
+  groups: (userId) => `ff:groups:${userId}`,
+};
 
 /**
  * Get data from cache. If not found, call fetchFn to get it,

@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { supabase } from '@/lib/supabase';
 import { getOrFetch, invalidate,TTL } from '@/utils/cache';
-import { keys } from '../utils/cache';
+import { Keys } from '../utils/cache';
 
 
 const useWalletStore = create((set, get) => ({
@@ -25,7 +25,7 @@ const useWalletStore = create((set, get) => ({
     if (!userId) return;
     set({ loadingBalance: true });
     const data = await getOrFetch(
-    keys.profile(userId),
+    Keys.profile(userId),
     async () => {
       const { data } = await supabase
         .from('profiles')
@@ -46,7 +46,7 @@ const useWalletStore = create((set, get) => ({
   set({ loadingTransactions: true });
 
   const data = await getOrFetch(
-    keys.transactions(userId),
+    Keys.transactions(userId),
     async () => {
       const { data, error } = await supabase
         .from('transactions')
@@ -74,7 +74,7 @@ const useWalletStore = create((set, get) => ({
   set({ loadingContacts: true });
 
   const data = await getOrFetch(
-    keys.contacts(userId),
+    Keys.contacts(userId),
     async () => {
       const { data, error } = await supabase
         .from('contacts')
@@ -101,7 +101,7 @@ const useWalletStore = create((set, get) => ({
       return { success: false, error: error.message };
     }
 
-    await invalidate(keys.contacts(userId));
+    await invalidate(Keys.contacts(userId));
     await get().fetchContacts(userId);
     return { success: true };
   },
@@ -126,7 +126,7 @@ const useWalletStore = create((set, get) => ({
   if (!user) { set({ loadingGroups: false }); return { error: null }; }
 
   const data = await getOrFetch(
-    keys.groups(user.id),
+    Keys.groups(user.id),
     async () => {
       const { data, error } = await supabase
         .from('groups')
@@ -158,7 +158,7 @@ const useWalletStore = create((set, get) => ({
 
   const { data: { user } } = await supabase.auth.getUser();
   // Invalidate so next fetch goes to Supabase not cache
-  await invalidate(keys.profile(user.id), keys.transactions(user.id));
+  await invalidate(Keys.profile(user.id), Keys.transactions(user.id));
 
   set({ balance: parseFloat(newBalance) });
   return { success: true, newBalance: parseFloat(newBalance) };
@@ -177,7 +177,7 @@ const useWalletStore = create((set, get) => ({
   }
 
   const { data: { user } } = await supabase.auth.getUser();
-  await invalidate(keys.profile(user.id), keys.transactions(user.id));
+  await invalidate(Keys.profile(user.id), Keys.transactions(user.id));
 
   set({ balance: parseFloat(newBalance) });
   return { success: true };
@@ -200,7 +200,7 @@ const useWalletStore = create((set, get) => ({
   }
 
   const { data: { user } } = await supabase.auth.getUser();
-  await invalidate(keys.profile(user.id), keys.transactions(user.id));
+  await invalidate(Keys.profile(user.id), Keys.transactions(user.id));
 
   return { success: true, message: data };
 },
@@ -231,9 +231,9 @@ const useWalletStore = create((set, get) => ({
 
   const { data: { user } } = await supabase.auth.getUser();
   await invalidate(
-    keys.profile(user.id),
-    keys.transactions(user.id),
-    keys.groups(user.id)
+    Keys.profile(user.id),
+    Keys.transactions(user.id),
+    Keys.groups(user.id)
   );
 
   set({ balance: parseFloat(newBalance) });
@@ -257,9 +257,9 @@ const useWalletStore = create((set, get) => ({
 
     const { data: { user } } = await supabase.auth.getUser();
   await invalidate(
-    keys.profile(user.id),
-    keys.transactions(user.id),
-    keys.groups(user.id)
+    Keys.profile(user.id),
+    Keys.transactions(user.id),
+    Keys.groups(user.id)
   );
 
     set({ balance: parseFloat(newBalance) });
