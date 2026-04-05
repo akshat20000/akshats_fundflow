@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { supabase } from '@/lib/supabase';
 import { getOrFetch, invalidate,TTL } from '@/utils/cache';
-import { Keys } from '../utils/cache';
+import { keys } from '../utils/cache';
 
 
 const useWalletStore = create((set, get) => ({
