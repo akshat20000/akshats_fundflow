@@ -235,7 +235,7 @@ export default function SignUp() {
                   type="password"
                   value={form.password}
                   onChange={handleChange('password')}
-                  placeholder="Min. 6 characters"
+                  placeholder="password"
                   autoComplete="new-password"
                   className={`ff-input pl-10 ${errors.password ? 'border-negative/50' : ''}`}
                   disabled={loading}
