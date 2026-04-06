@@ -1,6 +1,12 @@
 import {Redis} from '@upstash/redis';
 
-export const redis=new Redis({
-    url: import.meta.env.UPSTASH_REDIS_REST_URL,
-    token: import.meta.env.UPSTASH_REDIS_REST_TOKEN
-})
+const url   = import.meta.env.VITE_UPSTASH_REDIS_REST_URL;
+const token = import.meta.env.VITE_UPSTASH_REDIS_REST_TOKEN;
+
+export const redis = (url && token)
+  ? new Redis({ url, token })
+  : null;
+
+if (!redis) {
+  console.warn('[redis] Redis env vars missing — caching disabled, using Supabase directly.');
+}
