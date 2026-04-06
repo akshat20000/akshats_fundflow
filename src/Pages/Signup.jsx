@@ -8,48 +8,54 @@ import { Spinner } from '@/components/ui';
 function getStrength(pwd) {
   if (!pwd) return { score: 0, label: '', color: '' };
   let score = 0;
-  if (pwd.length >= 8)         score++;
-  if (/[A-Z]/.test(pwd))      score++;
-  if (/[0-9]/.test(pwd))      score++;
+  if (pwd.length >= 8) score++;
+  if (/[A-Z]/.test(pwd)) score++;
+  if (/[0-9]/.test(pwd)) score++;
   if (/[^A-Za-z0-9]/.test(pwd)) score++;
   const map = [
-    { label: '',        color: '' },
-    { label: 'Weak',    color: 'bg-negative' },
-    { label: 'Fair',    color: 'bg-warning' },
-    { label: 'Good',    color: 'bg-cyan' },
-    { label: 'Strong',  color: 'bg-positive' },
+    { label: '', color: '' },
+    { label: 'Weak', color: 'bg-negative' },
+    { label: 'Fair', color: 'bg-warning' },
+    { label: 'Good', color: 'bg-cyan' },
+    { label: 'Strong', color: 'bg-positive' },
   ];
   return { score, ...map[score] };
 }
 
 export default function SignUp() {
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
   const { signUp } = useAuthStore();
 
   const [form, setForm] = useState({
     username: '', email: '', password: '', confirm: '',
   });
-  const [errors, setErrors]     = useState({});
-  const [loading, setLoading]   = useState(false);
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const [serverErr, setServerErr] = useState('');
-  const [success, setSuccess]   = useState(null); // { email }
+  const [success, setSuccess] = useState(null); // { email }
 
   const strength = getStrength(form.password);
 
   // ── Validation ──
   function validate() {
     const e = {};
-    if (!form.username.trim())            e.username = 'Username is required.';
-    else if (form.username.length < 3)    e.username = 'Minimum 3 characters.';
-    else if (/\s/.test(form.username))    e.username = 'No spaces allowed.';
+    if (!form.username.trim()) e.username = 'Username is required.';
+    else if (form.username.length < 3) e.username = 'Minimum 3 characters.';
+    else if (/\s/.test(form.username)) e.username = 'No spaces allowed.';
 
-    if (!form.email.trim())               e.email = 'Email is required.';
+    if (!form.email.trim()) e.email = 'Email is required.';
     else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = 'Enter a valid email.';
 
-    if (!form.password)                   e.password = 'Password is required.';
-    else if (form.password.length < 6)   e.password = 'Minimum 6 characters.';
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}$/;
 
-    if (!form.confirm)                    e.confirm = 'Please confirm your password.';
+    if (!form.password) {
+      e.password = 'Password is required.';
+    } else if (!passwordRegex.test(form.password)) {
+      e.password =
+        'Password must be 8+ characters and include a capital letter, number, and special character.';
+    }
+
+    if (!form.confirm) e.confirm = 'Please confirm your password.';
     else if (form.confirm !== form.password) e.confirm = 'Passwords do not match.';
     return e;
   }
@@ -76,7 +82,7 @@ export default function SignUp() {
     if (!result.success) {
       const msg = result.error?.toLowerCase() || '';
       if (msg.includes('already registered')) setServerErr('This email is already registered.');
-      else if (msg.includes('valid email'))   setServerErr('Enter a valid email address.');
+      else if (msg.includes('valid email')) setServerErr('Enter a valid email address.');
       else setServerErr(result.error || 'Sign up failed. Please try again.');
       setLoading(false);
       return;
@@ -244,7 +250,7 @@ export default function SignUp() {
               {form.password && !errors.password && (
                 <div className="mt-2">
                   <div className="flex gap-1 mb-1">
-                    {[1,2,3,4].map(i => (
+                    {[1, 2, 3, 4].map(i => (
                       <div key={i}
                         className={`h-1 flex-1 rounded-full transition-all duration-300 ${i <= strength.score ? strength.color : 'bg-white/[0.08]'}`}
                       />
@@ -252,11 +258,10 @@ export default function SignUp() {
                   </div>
                   <p className="text-2xs text-muted-text">
                     Strength:{' '}
-                    <span className={`font-semibold ${
-                      strength.score === 1 ? 'text-negative' :
-                      strength.score === 2 ? 'text-warning' :
-                      strength.score === 3 ? 'text-cyan' : 'text-positive'
-                    }`}>
+                    <span className={`font-semibold ${strength.score === 1 ? 'text-negative' :
+                        strength.score === 2 ? 'text-warning' :
+                          strength.score === 3 ? 'text-cyan' : 'text-positive'
+                      }`}>
                       {strength.label}
                     </span>
                   </p>
@@ -282,9 +287,8 @@ export default function SignUp() {
                 />
                 {/* Match indicator */}
                 {form.confirm && (
-                  <i className={`fas absolute right-3.5 top-1/2 -translate-y-1/2 text-sm pointer-events-none ${
-                    form.confirm === form.password ? 'fa-check-circle text-positive' : 'fa-times-circle text-negative'
-                  }`} />
+                  <i className={`fas absolute right-3.5 top-1/2 -translate-y-1/2 text-sm pointer-events-none ${form.confirm === form.password ? 'fa-check-circle text-positive' : 'fa-times-circle text-negative'
+                    }`} />
                 )}
               </div>
               {errors.confirm && (
