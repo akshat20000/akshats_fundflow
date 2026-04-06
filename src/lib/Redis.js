@@ -7,6 +7,6 @@ export const redis = (url && token)
   ? new Redis({ url, token })
   : null;
 
-if (!redis) {
-  console.warn('[redis] Redis env vars missing — caching disabled, using Supabase directly.');
-}
+// if (!redis) {
+//   console.warn('[redis] Redis env vars missing — caching disabled, using Supabase directly.');
+// }
