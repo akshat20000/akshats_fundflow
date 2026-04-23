@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { supabase } from '@/lib/supabase';
 import useAuthStore from '@/store/useAuthStore';
 import useWalletStore from '@/store/useWalletStore';
@@ -80,6 +81,7 @@ useEffect(() => {
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <SpeedInsights />
     </BrowserRouter>
   );
 }
