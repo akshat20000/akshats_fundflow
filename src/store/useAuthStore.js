@@ -45,7 +45,9 @@ const useAuthStore = create((set, get) => ({
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
-      options: { data: { username } },
+      options:
+       { data: { username } },
+       emailRedirectTo: `${window.location.origin}/signin`
     });
     if (error) {
       set({ error: error.message });

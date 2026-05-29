@@ -47,7 +47,7 @@ export default function SignUp() {
     else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = 'Enter a valid email.';
 
     if (!form.password)                   e.password = 'Password is required.';
-    else if (form.password.length < 6)   e.password = 'Minimum 6 characters.';
+    else if (form.password.length < 6)   e.password = 'Minimum 8 characters.';
 
     if (!form.confirm)                    e.confirm = 'Please confirm your password.';
     else if (form.confirm !== form.password) e.confirm = 'Passwords do not match.';
@@ -229,7 +229,7 @@ export default function SignUp() {
                   type="password"
                   value={form.password}
                   onChange={handleChange('password')}
-                  placeholder="Min. 6 characters"
+                  placeholder="Min. 8 characters"
                   autoComplete="new-password"
                   className={`ff-input pl-10 ${errors.password ? 'border-negative/50' : ''}`}
                   disabled={loading}

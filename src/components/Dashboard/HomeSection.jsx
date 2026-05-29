@@ -53,34 +53,6 @@ export default function HomeSection({ onNavigate }) {
         onSendMoney={handleSendMoney}
       />
 
-      {/* ── Stat row ── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <StatCard
-          label="Month Income"
-          value={`$${totalIn.toFixed(2)}`}
-          icon="fa-arrow-down"
-          accent="positive"
-        />
-        <StatCard
-          label="Month Spend"
-          value={`$${totalOut.toFixed(2)}`}
-          icon="fa-arrow-up"
-          accent="negative"
-        />
-        <StatCard
-          label="Transactions"
-          value={thisMonth.length}
-          icon="fa-receipt"
-          accent="cyan"
-        />
-        <StatCard
-          label="Contacts"
-          value={contacts.length}
-          icon="fa-users"
-          accent="warning"
-        />
-      </div>
-
       {/* ── Main grid ── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
