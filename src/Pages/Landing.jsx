@@ -28,12 +28,12 @@ const FEATURES = [
 
 // ── Tech stack badges ──
 const TECH = [
-  { label: 'React 18',     icon: 'fa-react',    color: '#61dafb' },
-  { label: 'Supabase',     icon: 'fa-database',  color: '#3ecf8e' },
-  { label: 'Ethereum',     icon: 'fa-ethereum',  color: '#627eea' },
-  { label: 'MetaMask',     icon: 'fa-wallet',    color: '#f6851b' },
-  { label: 'Tailwind CSS', icon: 'fa-wind',      color: '#38bdf8' },
-  { label: 'Vite',         icon: 'fa-bolt',      color: '#a855f7' },
+  { label: 'React 18', icon: 'fa-react', color: '#61dafb' },
+  { label: 'Supabase', icon: 'fa-database', color: '#3ecf8e' },
+  { label: 'Ethereum', icon: 'fa-ethereum', color: '#627eea' },
+  { label: 'MetaMask', icon: 'fa-wallet', color: '#f6851b' },
+  { label: 'Tailwind CSS', icon: 'fa-wind', color: '#38bdf8' },
+  { label: 'Vite', icon: 'fa-bolt', color: '#a855f7' },
 ];
 
 export default function Landing() {
@@ -115,8 +115,8 @@ export default function Landing() {
         {/* Hero stats */}
         <div className="flex items-center justify-center gap-10 mt-16 flex-wrap">
           {[
-            { value: 'Web3',   label: 'Powered' },
-            { value: '100%',   label: 'Open Source' },
+            { value: 'Web3', label: 'Powered' },
+            { value: '100%', label: 'Open Source' },
             { value: 'Sepolia', label: 'Testnet' },
           ].map(({ value, label }) => (
             <div key={label} className="text-center">

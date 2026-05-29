@@ -6,21 +6,21 @@ import AuthLayout from '@/components/Layout/AuthLayout';
 import { Spinner } from '@/components/ui';
 
 export default function SignIn() {
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
   const { signIn } = useAuthStore();
   const { loadAll } = useWalletStore();
 
-  const [form, setForm]       = useState({ email: '', password: '' });
-  const [errors, setErrors]   = useState({});
+  const [form, setForm] = useState({ email: '', password: '' });
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [serverErr, setServerErr] = useState('');
 
   // ── Validation ──
   function validate() {
     const e = {};
-    if (!form.email.trim())    e.email    = 'Email is required.';
+    if (!form.email.trim()) e.email = 'Email is required.';
     else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = 'Enter a valid email.';
-    if (!form.password)        e.password = 'Password is required.';
+    if (!form.password) e.password = 'Password is required.';
     return e;
   }
 
