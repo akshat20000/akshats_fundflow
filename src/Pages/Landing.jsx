@@ -221,7 +221,7 @@ export default function Landing() {
             © 2025 FundFlow. Built with React, Supabase & Ethereum.
           </p>
           <div className="flex items-center gap-4">
-            <a href="https://github.com/akshat20000/FundFlow" target="_blank" rel="noopener noreferrer"
+            <a href="https://github.com/akshat20000/akshats_fundflow" target="_blank" rel="noopener noreferrer"
               className="text-muted-text hover:text-primary-text text-sm transition-colors flex items-center gap-1.5 no-underline">
               <i className="fab fa-github" />
               GitHub

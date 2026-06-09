@@ -17,7 +17,7 @@
     @apply bg-main text-primary-text font-body;
     font-size: 15px;
     line-height: 1.6;
-    overflow: hidden;
+    
   }
 
   h1, h2, h3, h4, h5, h6 {
